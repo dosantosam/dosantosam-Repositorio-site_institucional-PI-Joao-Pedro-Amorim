@@ -1,0 +1,62 @@
+/*Bloco de login*/
+
+.pag_login {
+background-color: #ecf0f1;
+text-align: center;
+padding: 50px;
+height: 320px;
+}
+
+.box_login {
+display: inline-block;
+background-color: white;
+box-shadow: 3px 3px 5px 2px #ccc;
+padding: 60px 20px 0px 20px;
+border-radius: 20px;
+width: 400px;    
+}
+
+.pag_login .input-padrao {
+width: 50%;
+display: inline-block;
+text-align: center;
+margin-bottom: 27px;
+width: 210px;
+height: 26px;
+border-radius: 5px;
+border-color: rgba(236, 233, 233, 0.933);
+}
+
+.btn-green {
+color: white;
+background-color: green;
+margin: 20px 0 50px 0;
+border: 0;
+padding: 10px 20px;
+
+border-radius: 5px;
+float: left;
+cursor: pointer;
+}
+
+.pag_login .btn-green {
+display: block;
+float: none;
+margin: auto;
+}
+
+.pag_login b {
+font-size: 30px;
+}
+
+.box_login form {
+display: block;
+margin: 20px auto;
+text-align: center;
+border: 2px solid white;
+padding: 14px 40px;
+
+}
+
+
+  
