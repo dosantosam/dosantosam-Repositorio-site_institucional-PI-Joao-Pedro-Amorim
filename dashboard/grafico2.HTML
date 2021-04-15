@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.2/chart.min.js" 
+    integrity="sha512-dnUg2JxjlVoXHVdSMWDYm2Y5xcIrJg1N+juOuRi0yLVkku/g26rwHwysJDAMwahaDfRpr1AxFz43ktuMPr/l1A==" 
+    crossorigin="anonymous">
+   </script>
+    <title>Document</title>
+</head>
+<body>
+    <div style="width: 50%; height: 100px;">
+        <canvas width="200" height="200" id="chart"></canvas>
+      </div>
+    
+</body>
+</html>
+<script>
+     var ctx = chart.getContext('2d');
+
+var myChart = new Chart(ctx, {
+type: 'polarArea',
+data: {
+    labels: [
+    'Red',
+    'Green',
+    'Yellow',
+    'Grey',
+    'Blue'
+  ],
+  datasets: [{
+    label: 'My First Dataset',
+    data: [11, 16, 7, 3, 14],
+    backgroundColor: [
+      'rgb(255, 99, 132)',
+      'rgb(75, 192, 192)',
+      'rgb(255, 205, 86)',
+      'rgb(201, 203, 207)',
+      'rgb(54, 162, 235)'
+    ]
+  }]
+
+},
+options: {
+    scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+
+}
+});
+
+  
+   
+
+    
+    
+
+
+</script>
