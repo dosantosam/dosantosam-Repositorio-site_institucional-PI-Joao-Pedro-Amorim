@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ptbr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/login.css">
+    <title>Login</title>
+</head>
+<body>
+
+    <!--   CABEÇALHO   -->
+    <div class="header">
+        <div class="container">
+            <img class="logo" src="img/lettutech2.png" alt="Logo lettutech" />
+            <nav>
+                <ul>
+                    <li><a href="index.html">Serviços</a></li>
+                    <li><a href="contato.html">Sobre nós</a></li>
+                    <li><a href="cadastro.html">Aderir</a></li>
+                    <li><a href="login.html" style="color:#00913D">Login</a></lis=>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <!--   CAIXA LOGIN   -->
+    <div class="pag-login">
+        <div class="container_login">
+            <div class="box-login">
+                <h1>LOGIN</h1>
+
+                <form id="form_login" method="post" onsubmit="return entrar()">
+                    <span>Email:</span>
+                    <input name="email" type="text" class="inp_login" id="id_login">
+                    <br>
+                    <span>Senha:</span>
+                    <span class="sn">..</span>
+                    <input name="senha" type="password" class="inp_login" id="id_senha">
+                    <br>
+                    <button type="submit" id="btn_entrar" class="btn-green">Entrar</button>
+                </form>
+                <div class="extra">
+                    <div id="div_erro" class="msg_erro">
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--   RODAPE   -->
+    <div class="footer">
+        <div class="container">
+            <div class="todas_footer_box">
+                <!--sobre nós-->
+                <div class="footer_text">
+                    <h3>Empresa</h3>
+                    <img src="img/lettutech3.png" alt="logo" />
+                </div>
+                <!--contato-->
+                <div class="footer_text">
+                    <h3>Contato</h3>
+                    <span>
+                        (11)98765-4321 <br />
+                        equipelettutech@gmail.com
+                    </span>
+                </div>
+                <!--social medias-->
+                <div class="footer_text">
+                    <h3>Redes sociais</h3>
+                    <img src="img/telegram.png" alt="telegram" id="telegram" title="telegram"/> <a href=""></a>
+                    <a href="https://www.facebook.com/Lettutech-100352942202861["> <img src="img/face.png" alt="facebook" id="facebook" title="facebook"/> </a>
+                    <a href="https://www.instagram.com/lettutech/?hl=pt-br"> <img src="img/insta.png" alt="instagram" id="instagram" title="instagram"/> </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+<script>
+
+    // function autenticar(){      // atribuindo a função autenticar para o login
+
+    //     var login = id_login.value;
+    //     var senha = id_senha.value;
+
+    //     if((login == "adm") && (senha == "123")) {      
+    //         // irá abrir a página de dashboard somente para o usuário já cadastrado
+    //         window.open("dashboard_inicio.html");
+
+    //     } else {
+    //         // gerará um alerta para os logins invalidos
+    //         alert('Senha ou login inválidos');
+    //     }
+
+    // }
+
+    function entrar() {
+        aguardar();
+        var formulario = new URLSearchParams(new FormData(form_login));
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            body: formulario
+        }).then(resposta => {
+
+            if (resposta.ok) {
+
+                resposta.json().then(json => {
+
+                    sessionStorage.login_usuario_meuapp = json.login;
+                    sessionStorage.nome_usuario_meuapp = json.nome;
+
+                    window.location.href = 'dashboard_inicio.html';
+                });
+
+            } else {
+
+                console.log('Erro de login!');
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizar_aguardar(texto);
+                });
+            }
+        });
+
+        return false;
+    }
+
+    function aguardar() {
+        btn_entrar.disabled = true;
+        div_erro.style.visibility = 'hidden';
+    }
+
+    function finalizar_aguardar(resposta) {
+        btn_entrar.disabled = false;
+        div_erro.style.visibility = 'visible';
+        div_erro.innerHTML = resposta;
+
+    }
+
+    
+
+</script>
